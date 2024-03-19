@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Pages/home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,14 +10,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Infoin_E-Wallet",
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+      theme: ThemeData(
+        primarySwatch: Colors.yellow,
+        useMaterial3: false,
       ),
+      debugShowCheckedModeBanner: false,
+      home: Home()
     );
   }
 }
