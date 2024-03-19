@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
           children: [
             Row(
               children: [
-                const Expanded(child: Text("Hi, Jono")),
+                const Expanded(child: Text("Hi, Niki")),
                 Expanded(child: ElevatedButton(onPressed: () {
             Navigator.push(
               context,
