@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Auth/login.dart';
 import 'package:infoin_ewallet/Pages/home.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home()
+      home: const Login()
     );
   }
 }
