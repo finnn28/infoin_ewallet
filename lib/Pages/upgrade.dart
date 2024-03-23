@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:infoin_ewallet/Auth/login.dart';
 
 class Upgrade extends StatelessWidget {
   const Upgrade({super.key});
@@ -55,7 +56,7 @@ class Upgrade extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: (){}, child: const Text("Lanjut"))
+                ElevatedButton(onPressed: (){ Navigator.push(context,MaterialPageRoute(builder: (context) => const Login() ,)); }, child: const Text("Lanjut"))
               ],
             )
           ],

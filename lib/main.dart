@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home()
+      home: const Home()
     );
   }
 }

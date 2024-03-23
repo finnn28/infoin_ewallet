@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Auth/Register.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Register extends StatelessWidget {
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Register'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Login',
+              'Register',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -20,7 +22,7 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const  EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Email',
@@ -30,7 +32,7 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding:const  EdgeInsets.symmetric(horizontal: 40),
+              padding: const  EdgeInsets.symmetric(horizontal: 40),
               child: TextFormField(
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -42,20 +44,9 @@ class Login extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add login functionality here
+                // Add registration functionality here
               },
-              child: const Text('Login'),
-            ),
-            const SizedBox(height: 10),
-            TextButton(
-              onPressed: () {
-                // Navigate to Register screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const  Register()),
-                );
-              },
-              child: const  Text('Create an account'),
+              child: const Text('Register'),
             ),
           ],
         ),
