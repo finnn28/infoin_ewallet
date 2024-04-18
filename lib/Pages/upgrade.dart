@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Pages/versiKTP.dart';
 
 class Upgrade extends StatelessWidget {
   const Upgrade({super.key});
@@ -16,11 +17,12 @@ class Upgrade extends StatelessWidget {
                 const Expanded(child: Text("PREMIUM")),
               ],
             ),
-            const Row(
-              children: [
-                Expanded(child: Center(child: Text("Fitur yang anda dapatkan")))
-              ],
+            const SizedBox(height: 20),
+            const Text(
+              "Fitur yang Anda dapatkan",
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 10),
             const Row(
               children: [
                 Expanded(flex: 10, child: Icon(Icons.check)),
@@ -51,11 +53,12 @@ class Upgrade extends StatelessWidget {
                 Expanded(flex: 90, child: Text("Promo Menarik")),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(onPressed: (){}, child: const Text("Lanjut"))
-              ],
+            const Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const VersiKTP()));
+              },
+              child: const Text("Lanjut "),
             )
           ],
         ),
