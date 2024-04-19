@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Auth/register.dart';
+import 'package:infoin_ewallet/Pages/home.dart';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Register',
+              'Login',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -22,7 +26,7 @@ class Register extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const  EdgeInsets.symmetric(horizontal: 40),
               child: TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Email',
@@ -32,7 +36,7 @@ class Register extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const  EdgeInsets.symmetric(horizontal: 40),
+              padding:const  EdgeInsets.symmetric(horizontal: 40),
               child: TextFormField(
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -44,9 +48,21 @@ class Register extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add registration functionality here
+                // Add login functionality here
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
               },
-              child: const Text('Register'),
+              child: const Text('Login'),
+            ),
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                // Navigate to Register screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const  Register()),
+                );
+              },
+              child: const  Text('Create an account'),
             ),
           ],
         ),
