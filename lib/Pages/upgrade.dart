@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Pages/versiKTP.dart';
+import 'package:infoin_ewallet/Pages/VersiKTP.dart';
 
 class Upgrade extends StatelessWidget {
   const Upgrade({super.key});
@@ -56,7 +56,7 @@ class Upgrade extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const VersiKTP()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Versiktp()));
               },
               child: const Text("Lanjut "),
             )

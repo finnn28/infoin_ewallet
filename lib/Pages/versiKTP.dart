@@ -1,7 +1,8 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
-class VersiKTP extends StatelessWidget {
-  const VersiKTP({super.key}); 
+
+class Versiktp extends StatelessWidget {
+  const Versiktp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
