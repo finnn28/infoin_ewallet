@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:infoin_ewallet/Pages/upgrade.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import  'package:infoin_ewallet/Pages/Topup.dart';
+import 'package:infoin_ewallet/Pages/wallet.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -140,11 +142,29 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
-                        Expanded(child: Center(child: Text("Bayar"))),
-                        Expanded(child: Center(child: Text("Transfer"))),
-                        Expanded(child: Center(child: Text("Top Up"))),
+                        const Expanded(child: Center(child: Text("Bayar"))),
+                        const Expanded(child: Center(child: Text("Transfer"))),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Topup(currentBalance: 0.0, wallet: Wallet()), // Gantilah Wallet() dengan objek wallet yang sesuai
+
+                                ),
+                              );
+                            },
+                            child: const Center(
+                              child: Text(
+                                "Top Up",
+                                
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 55),
