@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Topup(currentBalance: 0.0, wallet: Wallet(), updateBalance: (double) {  },),
+                                  builder: (context) => TopUp(currentBalance: 0.0, wallet: Wallet(), updateBalance: (double) {  },),
                                    // Gantilah Walet() dengan objek wallet yang sesuai
                                   
                                 ),
