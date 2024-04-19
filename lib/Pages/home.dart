@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:infoin_ewallet/Pages/upgrade.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import  'package:infoin_ewallet/Pages/Topup.dart';
+import  'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Pages/wallet.dart';
 
 class Home extends StatefulWidget {
