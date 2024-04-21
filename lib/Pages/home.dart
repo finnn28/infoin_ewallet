@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:infoin_ewallet/Pages/upgrade.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import  'package:infoin_ewallet/Pages/topup.dart';
+import 'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Pages/wallet.dart';
 
 class Home extends StatefulWidget {
@@ -145,23 +146,44 @@ class _HomeState extends State<Home> {
                     Row(
                       children: [
                         const Expanded(child: Center(child: Text("Bayar"))),
-                        const Expanded(child: Center(child: Text("Transfer"))),
+                        Expanded(child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Transfer(
+                                    currentBalance: 0.0,
+                                    wallet: Wallet(),
+                                    updateBalance: (double) {},
+                                  ),
+                                  // Gantilah Walet() dengan objek wallet yang sesuai
+                                ),
+                              );
+                            },
+                            child: const Center(
+                              child: Text(
+                                "Transfer",
+                              ),
+                            ),
+                          ),),
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TopUp(currentBalance: 0.0, wallet: Wallet(), updateBalance: (double) {  },),
-                                   // Gantilah Walet() dengan objek wallet yang sesuai
-                                  
+                                  builder: (context) => TopUp(
+                                    currentBalance: 0.0,
+                                    wallet: Wallet(),
+                                    updateBalance: (double) {},
+                                  ),
+                                  // Gantilah Walet() dengan objek wallet yang sesuai
                                 ),
                               );
                             },
                             child: const Center(
                               child: Text(
                                 "Top Up",
-                                
                               ),
                             ),
                           ),
@@ -400,7 +422,9 @@ class _HomeState extends State<Home> {
                         Spacer(),
                       ],
                     ),
-                    SizedBox(height: 25,),
+                    SizedBox(
+                      height: 25,
+                    ),
                     Positioned(
                       left: 0,
                       right: 0,

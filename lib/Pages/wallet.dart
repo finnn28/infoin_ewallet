@@ -18,4 +18,15 @@ class Wallet {
       return true;
     }
   }
+
+  bool transfer(double amount) {
+    if (amount <= 0) {
+      // Jika nominal tidak valid, top up gagal
+      return false;
+    } else {
+      // Tambahkan jumlah top up ke saldo
+      _balance += amount;
+      return true;
+    }
+  }
 }
