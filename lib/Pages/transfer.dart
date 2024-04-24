@@ -69,10 +69,13 @@ class Transfer extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _transfer,
-              child:const  Text('Transfer'),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _transfer,
+                child:const  Text('Transfer'),
+              ),
             ),
           ],
         ),

@@ -69,10 +69,13 @@ class TopUp extends StatelessWidget {
               'Rp. ${currentBalance.toStringAsFixed(2)}',
               style:const  TextStyle(fontSize: 20),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _topUp,
-              child:const  Text('Top Up'),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _topUp,
+                child:const  Text('Top Up'),
+              ),
             ),
           ],
         ),

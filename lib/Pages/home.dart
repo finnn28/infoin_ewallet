@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:infoin_ewallet/Pages/bayar.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:infoin_ewallet/Pages/upgrade.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,7 +55,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Color.fromARGB(255, 226, 225, 225),
       body: Stack(
         children: [
           Positioned(
@@ -145,8 +146,18 @@ class _HomeState extends State<Home> {
                     ),
                     Row(
                       children: [
-                        const Expanded(child: Center(child: Text("Bayar"))),
-                        Expanded(child: GestureDetector(
+                        Expanded(
+                            child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Bayar()),
+                            );
+                          },
+                          child: Center(child: Text("Bayar")),
+                        )),
+                        Expanded(
+                          child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -165,7 +176,8 @@ class _HomeState extends State<Home> {
                                 "Transfer",
                               ),
                             ),
-                          ),),
+                          ),
+                        ),
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
@@ -460,6 +472,7 @@ class _HomeState extends State<Home> {
             label: 'Profil',
           ),
         ],
+        showUnselectedLabels: true,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.grey,

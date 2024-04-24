@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Auth/login.dart';
+import 'package:infoin_ewallet/Pages/Auth/login.dart';
 
 void main() {
   runApp(const MainApp());
