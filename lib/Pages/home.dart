@@ -50,6 +50,22 @@ class _HomeState extends State<Home> {
     setState(() {
       _selectedIndex = index;
     });
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/riwayat');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/pesan');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/profile');
+        break;
+      default:
+        throw Exception('Invalid index');
+    }
   }
 
   @override
@@ -82,6 +98,11 @@ class _HomeState extends State<Home> {
                     )),
                     Expanded(
                         child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -97,31 +118,60 @@ class _HomeState extends State<Home> {
                             ))),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                        child: Image.asset(
-                      'assets/images/img_image_1.png',
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                    )),
-                    const Padding(
-                      padding: EdgeInsets.only(right: 17),
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text("Saldo"),
+                Container(
+                  width: double.infinity,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 216, 23, 10),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Rp.100.000"),
-                        ],
+                          child: Center(
+                              child: Image.asset(
+                            'assets/images/img_image_1.png',
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                          )),
+                        ),
                       ),
-                    )
-                  ],
+                      const Padding(
+                        padding: EdgeInsets.only(right: 17),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "Saldo",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Rp.100.000",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 15),
                 Expanded(
@@ -131,16 +181,53 @@ class _HomeState extends State<Home> {
                     Row(
                       children: [
                         Expanded(
+                            child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Bayar()),
+                            );
+                          },
                           child: SvgPicture.asset(
                               'assets/images/img_bx_bx_scan.svg'),
-                        ),
+                        )),
                         Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Transfer(
+                                    currentBalance: 0.0,
+                                    wallet: Wallet(),
+                                    updateBalance: (double) {},
+                                  ),
+                                  // Gantilah Walet() dengan objek wallet yang sesuai
+                                ),
+                              );
+                            },
                           child: SvgPicture.asset(
                               'assets/images/img_transaction_1.svg'),
+                          ),
                         ),
                         Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TopUp(
+                                    currentBalance: 0.0,
+                                    wallet: Wallet(),
+                                    updateBalance: (double) {},
+                                  ),
+                                  // Gantilah Walet() dengan objek wallet yang sesuai
+                                ),
+                              );
+                            },
                           child: SvgPicture.asset(
                               'assets/images/img_mdi_wallet_plus_outline.svg'),
+                          ),
                         ),
                       ],
                     ),
