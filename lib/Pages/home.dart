@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     const Expanded(
@@ -96,31 +96,12 @@ class _HomeState extends State<Home> {
                       "Hi, Niki",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
-                    Expanded(
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Upgrade()),
-                              );
-                            },
-                            child: const Text(
-                              "UPGRADE",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ))),
                   ],
                 ),
+                SizedBox(height: 20),
                 Container(
                   width: double.infinity,
-                  height: 70,
+                  height: 80,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 216, 23, 10),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -522,7 +503,7 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 35,
                     ),
                     Positioned(
                       left: 0,
@@ -564,6 +545,7 @@ class _HomeState extends State<Home> {
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }

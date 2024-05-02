@@ -9,6 +9,30 @@ void main() {
   runApp(const MainApp());
 }
 
+class CustomPageTransitionsBuilder extends PageTransitionsBuilder {
+  final Duration transitionDuration;
+  final Curve curves;
+
+  CustomPageTransitionsBuilder({required this.transitionDuration, required this.curves});
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return FadeTransition(
+      opacity: CurvedAnimation(
+        parent: animation,
+        curve: curves,
+      ),
+      child: child,
+    );
+  }
+}
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -19,6 +43,14 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
         useMaterial3: false,
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CustomPageTransitionsBuilder(
+              transitionDuration: const Duration(milliseconds: 300),
+              curves: Curves.ease,
+            )
+          },
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: const Login(),
