@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/Auth/login.dart';
 import 'package:infoin_ewallet/Pages/home.dart';
 import 'package:infoin_ewallet/Pages/pesan.dart';
-import 'package:infoin_ewallet/Pages/profile.dart';
+import 'package:infoin_ewallet/Pages/Profile/profile.dart';
 import 'package:infoin_ewallet/Pages/riwayat.dart';
+import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => UserProfile()),
+    ],
+    child: const MainApp(),
+  ));
 }
 
 class CustomPageTransitionsBuilder extends PageTransitionsBuilder {
@@ -55,6 +62,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const Login(),
       routes: {
+        '/login': (context) => const Login(),
         '/home': (context) => const Home(),
         '/riwayat': (context) => const Riwayat(),
         '/profile': (context) => const Profile(),

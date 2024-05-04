@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:infoin_ewallet/Pages/bayar.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
-import 'package:infoin_ewallet/Pages/upgrade.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Pages/wallet.dart';
+import 'package:infoin_ewallet/Provider/userProfile.dart';
 import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -71,6 +72,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<UserProfile>(context);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 226, 225, 225),
       body: Stack(
@@ -92,10 +94,10 @@ class _HomeState extends State<Home> {
                 const SizedBox(height: 20),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                         child: Text(
-                      "Hi, Niki",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'Hi, ${user.name}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     )),
                   ],
                 ),
