@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/Auth/login.dart';
+import 'package:infoin_ewallet/Pages/Menu/asuransi.dart';
+import 'package:infoin_ewallet/Pages/Menu/bpjs.dart';
+import 'package:infoin_ewallet/Pages/Menu/donasi.dart';
+import 'package:infoin_ewallet/Pages/Menu/game.dart';
+import 'package:infoin_ewallet/Pages/Menu/investasi.dart';
+import 'package:infoin_ewallet/Pages/Menu/listrik.dart';
+import 'package:infoin_ewallet/Pages/Menu/pulsa.dart';
+import 'package:infoin_ewallet/Pages/Menu/water.dart';
 import 'package:infoin_ewallet/Pages/home.dart';
 import 'package:infoin_ewallet/Pages/pesan.dart';
 import 'package:infoin_ewallet/Pages/Profile/profile.dart';
 import 'package:infoin_ewallet/Pages/riwayat.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserProfile()),
+      ChangeNotifierProvider(create: (_) => WalletProvider()),
     ],
     child: const MainApp(),
   ));
@@ -67,6 +77,14 @@ class MainApp extends StatelessWidget {
         '/riwayat': (context) => const Riwayat(),
         '/profile': (context) => const Profile(),
         '/pesan': (context) => const Pesan(),
+        '/pulsa': (context) => const Pulsa(),
+        '/water': (context) => const Water(),
+        '/asuransi': (context) => const Asuransi(),
+        '/bpjs': (context) => const BPJS(),
+        '/donasi': (context) => const Donasi(),
+        '/game': (context) => const Game(),
+        '/investasi': (context) => const Investasi(),
+        '/listrik': (context) => const Listrik(),
       },
     );
   }

@@ -5,9 +5,10 @@ import 'package:infoin_ewallet/Pages/bayar.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infoin_ewallet/Pages/topup.dart';
-import 'package:infoin_ewallet/Pages/wallet.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -73,6 +74,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<UserProfile>(context);
+    var wallet = Provider.of<WalletProvider>(context);
+    final saldoFormat = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 226, 225, 225),
       body: Stack(
@@ -130,30 +133,23 @@ class _HomeState extends State<Home> {
                           )),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 17),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 10,
+                            SizedBox(height: 8),
+                            Text("Saldo", style: TextStyle(color: Colors.white, fontSize: 15)),
+                            SizedBox(height: 10),
+                            Text(
+                              '${saldoFormat.format(wallet.balance ?? 0)}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20
+                              )
                             ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                "Saldo",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("Rp.100.000",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -181,11 +177,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Transfer(
-                                    currentBalance: 0.0,
-                                    wallet: Wallet(),
-                                    updateBalance: (double) {},
-                                  ),
+                                  builder: (context) => Transfer(),
                                   // Gantilah Walet() dengan objek wallet yang sesuai
                                 ),
                               );
@@ -200,11 +192,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TopUp(
-                                    currentBalance: 0.0,
-                                    wallet: Wallet(),
-                                    updateBalance: (double) {},
-                                  ),
+                                  builder: (context) => TopUp(),
                                   // Gantilah Walet() dengan objek wallet yang sesuai
                                 ),
                               );
@@ -233,12 +221,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Transfer(
-                                    currentBalance: 0.0,
-                                    wallet: Wallet(),
-                                    updateBalance: (double) {},
-                                  ),
-                                  // Gantilah Walet() dengan objek wallet yang sesuai
+                                  builder: (context) => Transfer(),
                                 ),
                               );
                             },
@@ -255,11 +238,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TopUp(
-                                    currentBalance: 0.0,
-                                    wallet: Wallet(),
-                                    updateBalance: (double) {},
-                                  ),
+                                  builder: (context) => TopUp(),
                                   // Gantilah Walet() dengan objek wallet yang sesuai
                                 ),
                               );
@@ -280,7 +259,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/pulsa');
                               },
                               child: Container(
                                 width: 50,
@@ -303,7 +282,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/water');
                               },
                               child: Container(
                                 width: 50,
@@ -313,12 +292,12 @@ class _HomeState extends State<Home> {
                                   color: Colors.white,
                                 ),
                                 child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_akar_icons_phone.svg')),
+                                    child: Image.asset(
+                                        'assets/images/water.png')),
                               ),
                             ),
                             const SizedBox(height: 7),
-                            Text("Telpon")
+                            Text("Water")
                           ],
                         ),
                         Spacer(),
@@ -326,7 +305,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/listrik');
                               },
                               child: Container(
                                 width: 50,
@@ -349,7 +328,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/game');
                               },
                               child: Container(
                                 width: 50,
@@ -372,7 +351,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/donasi');
                               },
                               child: Container(
                                 width: 50,
@@ -400,7 +379,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/asuransi');
                               },
                               child: Container(
                                 width: 50,
@@ -423,7 +402,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/investasi');
                               },
                               child: Container(
                                 width: 50,
@@ -446,7 +425,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/payment');
+                                Navigator.pushNamed(context, '/bpjs');
                               },
                               child: Container(
                                 width: 50,

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'wallet.dart';
+import 'package:infoin_ewallet/Provider/wallet.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart'; // Import untuk NumberFormat
 
 class Transfer extends StatefulWidget {
-  final double currentBalance;
-  final Wallet wallet;
-  final Function(double) updateBalance; // Callback untuk memperbarui saldo
 
-  Transfer(
-      {Key? key,
-      required this.currentBalance,
-      required this.wallet,
-      required this.updateBalance})
-      : super(key: key);
+  const Transfer({super.key});
 
   @override
   _TransferState createState() => _TransferState();
@@ -28,6 +22,7 @@ class _TransferState extends State<Transfer> {
   String? _namaPenerima;
   TextEditingController _nominalController = TextEditingController();
   TextEditingController _nomorHPController = TextEditingController();
+  bool _isNomorHPValid = false; // Menyimpan status validasi nomor HP
 
   void _cariPenerima() {
     String nomorHP = _nomorHPController.text;
@@ -37,20 +32,25 @@ class _TransferState extends State<Transfer> {
     );
     setState(() {
       _namaPenerima = penerima['nama'] ?? '';
+      _isNomorHPValid = _namaPenerima != null && _namaPenerima!.isNotEmpty; // Mengupdate status validasi nomor HP
     });
   }
 
   void _transfer() {
+    if (!_isNomorHPValid) {
+      return;
+    }
+
     double nominal = double.tryParse(_nominalController.text) ?? 0.0;
 
-    if (nominal <= 0) {
+    if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Nominal tidak valid')),
+        const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
       );
       return;
     }
 
-    bool success = widget.wallet.transfer(nominal);
+    bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
 
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -65,6 +65,9 @@ class _TransferState extends State<Transfer> {
 
   @override
   Widget build(BuildContext context) {
+    var wallet = Provider.of<WalletProvider>(context);
+    // Membuat format untuk saldo
+    final saldoFormat = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Transfer'),
@@ -107,12 +110,19 @@ class _TransferState extends State<Transfer> {
                 labelText: 'Rp. 0',
                 border: OutlineInputBorder(),
               ),
+              enabled: _isNomorHPValid, // Menonaktifkan jika nomor HP tidak valid
+            ),
+            Text(
+              'Saldo : ${saldoFormat.format(wallet.balance ?? 0)}',
+              style: TextStyle(
+                fontSize: 16
+              )
             ),
             const Spacer(),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _transfer,
+                onPressed: _isNomorHPValid ? _transfer : null, // Menonaktifkan jika nomor HP tidak valid
                 child: const Text('Transfer'),
               ),
             ),
