@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Pages/pin.dart';
+import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
+import 'package:infoin_ewallet/Widget/customButton.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart'; // Import untuk NumberFormat
 
@@ -41,27 +44,51 @@ class _TransferState extends State<Transfer> {
       return;
     }
 
-    double nominal = double.tryParse(_nominalController.text) ?? 0.0;
-
-    if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
-      );
-      return;
-    }
-
-    bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
-
-    if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Transfer berhasil')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Transfer gagal. Silakan coba lagi.')),
-      );
-    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PinDialog(
+          onPinEntered: () {
+            // Memanggil fungsi transfer setelah PIN dimasukkan
+            _prosesTransfer();
+          },
+        );
+      },
+    );
   }
+  
+  void _prosesTransfer() {
+    double nominal = double.tryParse(_nominalController.text) ?? 0.0;
+    Map<String, dynamic> newTransaction = {
+      'name': _namaPenerima!,
+      'type': 'Pengeluaran',
+      'category': 'Transfer',
+      'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
+      'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
+      'avatar': 'assets/images/img_ellipse_17.png'
+    };
+      if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
+        );
+        return;
+      }
+
+      bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
+
+      if (success) {
+        Provider.of<TransaksiProvider>(context, listen: false).addTransaction(newTransaction);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Transfer berhasil')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Transfer gagal. Silakan coba lagi.')),
+        );
+      }
+  }
+    
+
 
   @override
   Widget build(BuildContext context) {
@@ -119,12 +146,10 @@ class _TransferState extends State<Transfer> {
               )
             ),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _isNomorHPValid ? _transfer : null, // Menonaktifkan jika nomor HP tidak valid
-                child: const Text('Transfer'),
-              ),
+            CustomButton(
+              onPressed: _transfer,
+              text: 'Transfer',
+              isEnabled: _isNomorHPValid,
             ),
           ],
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:provider/provider.dart';
 
 class Riwayat extends StatefulWidget {
   const Riwayat({super.key});
@@ -10,47 +12,6 @@ class Riwayat extends StatefulWidget {
 
 class _RiwayatState extends State<Riwayat> {
   int _selectedIndex = 1;
-
-  // Contoh data transaksi
-  final List<Map<String, dynamic>> transactions = [
-    {
-      'name': 'Bank BRI',
-      'type': 'Pemasukan',
-      'category': 'Top Up',
-      'amount': 'Rp 100.000',
-      'date': '30 Apr 2024, 15:47',
-      'avatar': 'assets/images/img_ellipse_17.png'
-    },
-    {
-      'name': 'Jane Smith',
-      'type': 'Pengeluaran',
-      'category': 'Transfer',
-      'amount': 'Rp 50.000',
-      'date': '20 Apr 2024, 15:47',
-      'avatar': 'assets/images/img_ellipse_17.png'
-    },
-    {
-      'name': 'Alfamart',
-      'type': 'Pemasukan',
-      'category': 'Top Up',
-      'amount': 'Rp 100.000',
-      'date': '10 Apr 2024, 15:47',
-      'avatar': 'assets/images/img_ellipse_17.png'
-    },
-  ];
-
-  // Filtered transactions
-  List<Map<String, dynamic>> filteredTransactions = [];
-
-  // Filter options
-  List<String> filterOptions = ['Semua', 'Pemasukan', 'Pengeluaran'];
-  String selectedFilterOption = 'Semua';
-
-  @override
-  void initState() {
-    super.initState();
-    filteredTransactions = transactions;
-  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -74,21 +35,9 @@ class _RiwayatState extends State<Riwayat> {
     }
   }
 
-  // Method to filter transactions
-  void _filterTransactions(String filter) {
-    setState(() {
-      selectedFilterOption = filter;
-      if (filter == 'Semua') {
-        filteredTransactions = transactions;
-      } else {
-        filteredTransactions = transactions.where((transaction) => transaction['type'] == filter).toList();
-      }
-    });
-  }
-
-
   @override
   Widget build(BuildContext context) {
+    var transaksi = Provider.of<TransaksiProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -108,11 +57,11 @@ class _RiwayatState extends State<Riwayat> {
                     title: Text('Filter'),
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: filterOptions.map((String option) {
+                      children: transaksi.filterOptions.map((String option) {
                         return ListTile(
                           title: Text(option),
                           onTap: () {
-                            _filterTransactions(option);
+                            transaksi.filterTransactions(option);
                             Navigator.pop(context); // Close the dialog
                           },
                         );
@@ -126,9 +75,9 @@ class _RiwayatState extends State<Riwayat> {
         ],
       ),
       body: ListView.builder(
-        itemCount: filteredTransactions.length,
+        itemCount: transaksi.filteredTransaction.length,
         itemBuilder: (context, index) {
-          var transaction = filteredTransactions[index];
+          var transaction = transaksi.filteredTransaction[transaksi.filteredTransaction.length - 1 - index];
           var amountText = transaction['type'] == 'Pemasukan' ? '+${transaction['amount']}' : '-${transaction['amount']}';
           var amountColor = transaction['type'] == 'Pemasukan' ? Colors.green : null;
           return Container(

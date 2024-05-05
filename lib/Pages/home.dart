@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:infoin_ewallet/Pages/bayar.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +7,7 @@ import 'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:infoin_ewallet/Widget/homeMenuItem.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -255,119 +255,38 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 55),
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/pulsa');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_bi_phone.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Pulsa")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/pulsa',
+                          imagePath: 'assets/images/img_bi_phone.svg',
+                          text: 'Pulsa',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/water');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: Image.asset(
-                                        'assets/images/water.png')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Water")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/water',
+                          imagePath: 'assets/images/water.png',
+                          text: 'Water',
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/listrik');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_flash_1.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Listrik")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/listrik',
+                          imagePath: 'assets/images/img_flash_1.svg',
+                          text: 'Listrik',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/game');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_ion_game_controller.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Game")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/game',
+                          imagePath: 'assets/images/img_ion_game_controller.svg',
+                          text: 'Game',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/donasi');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_mdi_charity.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Donasi")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/donasi',
+                          imagePath: 'assets/images/img_mdi_charity.svg',
+                          text: 'Donasi',
+                          isSvg: true,
                         ),
                         Spacer(),
                       ],
@@ -375,96 +294,32 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 25),
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/asuransi');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_umbrella_1.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Asuransi")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/asuransi',
+                          imagePath: 'assets/images/img_umbrella_1.svg',
+                          text: 'Asuransi',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/investasi');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_shield_variant.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Investasi")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/investasi',
+                          imagePath: 'assets/images/img_shield_variant.svg',
+                          text: 'Investasi',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/bpjs');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_healthy_living_1.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("BPJS")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/bpjs',
+                          imagePath: 'assets/images/img_healthy_living_1.svg',
+                          text: 'BPJS',
+                          isSvg: true,
                         ),
                         Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/payment');
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/images/img_dashboard_2.svg')),
-                              ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text("Lainnya")
-                          ],
+                        CustomMenuItem(
+                          routeName: '/payment',
+                          imagePath: 'assets/images/img_dashboard_2.svg',
+                          text: 'Lainnya',
+                          isSvg: true,
                         ),
                         Spacer(),
                         Column(

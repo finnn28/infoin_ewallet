@@ -6,12 +6,14 @@ class UserProfile extends ChangeNotifier {
   String _email = 'john.doe@example.com';
   int _phoneNumber = 6282170474047;
   String _password = 'apanya';
+  int _pin = 123456;
   File? _avatarImage;
 
   String? get name => _name;
   String? get email => _email;
   int? get phoneNumber => _phoneNumber;
   String? get password => _password;
+  int? get pin => _pin;
   File? get avatarImage => _avatarImage;
 
   set name(val){
@@ -28,6 +30,10 @@ class UserProfile extends ChangeNotifier {
   }
   set password(val){
     _password = val;
+    notifyListeners();
+  }
+  set pin(val){
+    _pin = val;
     notifyListeners();
   }
   set avatarImage(val){

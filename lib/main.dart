@@ -12,6 +12,7 @@ import 'package:infoin_ewallet/Pages/home.dart';
 import 'package:infoin_ewallet/Pages/pesan.dart';
 import 'package:infoin_ewallet/Pages/Profile/profile.dart';
 import 'package:infoin_ewallet/Pages/riwayat.dart';
+import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (_) => UserProfile()),
       ChangeNotifierProvider(create: (_) => WalletProvider()),
+      ChangeNotifierProvider(create: (_) => TransaksiProvider()),
     ],
     child: const MainApp(),
   ));

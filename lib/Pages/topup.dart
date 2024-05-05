@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
+import 'package:infoin_ewallet/Widget/customButton.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -16,38 +18,61 @@ class TopUp extends StatefulWidget {
 class _TopUpState extends State<TopUp> {
   TextEditingController _nominalController = TextEditingController();
   PaymentMethod _selectedPaymentMethod = PaymentMethod.bankTransfer;
-  Bank _selectedBank = Bank.BRI; // Bank default yang dipilih
+  Bank _selectedBank = Bank.BRI;
+  bool _isNominalValid = false;
+
+  void _validateNominal(String value) {
+    setState(() {
+      _isNominalValid = value.isNotEmpty;
+    });
+  }
 
   void _topUp() {
-    double nominal = double.tryParse(_nominalController.text) ?? 0.0;
-
-    if (nominal <= 0) {
+    if (!_isNominalValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Nominal tidak valid')),
+        const SnackBar(content: Text('Mohon isi nominal terlebih dahulu')),
       );
       return;
     }
 
-    // Melakukan top up saldo berdasarkan metode pembayaran yang dipilih
+    double nominal = double.tryParse(_nominalController.text) ?? 0.0;
+    String receiverName = '';
+
+
     bool success = false;
     switch (_selectedPaymentMethod) {
       case PaymentMethod.bankTransfer:
         // Logika untuk top up melalui transfer bank
-        // Top up menggunakan bank _selectedBank
+        receiverName = _selectedBank.toString().split('.').last;
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.creditCard:
         // Logika untuk top up melalui kartu kredit
+        receiverName = 'Kartu Kredit';
+        success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.alfamart:
         // Logika untuk top up melalui Alfamart
+        receiverName = 'Alfamart';
+        success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.indomaret:
         // Logika untuk top up melalui Indomaret
+        receiverName = 'Indomaret';
+        success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
     }
+    Map<String, dynamic> newTransaction = {
+    'name': receiverName,
+    'type': 'Pemasukan',
+    'category': 'Top Up',
+    'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
+    'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
+    'avatar': 'assets/images/img_ellipse_17.png'
+  };
 
     if (success) {
+      Provider.of<TransaksiProvider>(context, listen: false).addTransaction(newTransaction);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Top Up berhasil')),
       );
@@ -127,15 +152,13 @@ class _TopUpState extends State<TopUp> {
                 labelText: 'Nominal',
                 border: OutlineInputBorder(),
               ),
+              onChanged: _validateNominal,
             ),
-            const SizedBox(height: 20),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _topUp,
-                child: const Text('Top Up'),
-              ),
+            CustomButton(
+              onPressed: _topUp,
+              text: 'Top Up',
+              isEnabled: _isNominalValid,
             ),
           ],
         ),
