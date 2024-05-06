@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/bayar.dart';
+import 'package:infoin_ewallet/Pages/promosi.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
 import 'package:infoin_ewallet/Widget/homeMenuItem.dart';
+import 'package:infoin_ewallet/Widget/menuItemBTT.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -160,95 +161,54 @@ class _HomeState extends State<Home> {
                   children: [
                     Row(
                       children: [
-                        Expanded(
-                            child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Bayar()),
-                            );
-                          },
-                          child: SvgPicture.asset(
-                              'assets/images/img_bx_bx_scan.svg'),
-                        )),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Transfer(),
-                                  // Gantilah Walet() dengan objek wallet yang sesuai
-                                ),
-                              );
-                            },
-                          child: SvgPicture.asset(
-                              'assets/images/img_transaction_1.svg'),
-                          ),
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TopUp(),
-                                  // Gantilah Walet() dengan objek wallet yang sesuai
-                                ),
-                              );
-                            },
-                          child: SvgPicture.asset(
-                              'assets/images/img_mdi_wallet_plus_outline.svg'),
-                          ),
-                        ),
+                        MenuItemBTT(svgPath: 'assets/images/img_bx_bx_scan.svg', onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Bayar()),
+                          );
+                        },),
+                        MenuItemBTT(svgPath: 'assets/images/img_transaction_1.svg', onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Transfer()),
+                          );
+                        },),
+                        MenuItemBTT(svgPath: 'assets/images/img_mdi_wallet_plus_outline.svg', onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => TopUp()),
+                          );
+                        },),
                       ],
                     ),
                     Row(
                       children: [
-                        Expanded(
-                            child: GestureDetector(
+                        MenuItemBTT(
+                          text: 'Bayar',
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Bayar()),
                             );
                           },
-                          child: Center(child: Text("Bayar")),
-                        )),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Transfer(),
-                                ),
-                              );
-                            },
-                            child: const Center(
-                              child: Text(
-                                "Transfer",
-                              ),
-                            ),
-                          ),
                         ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TopUp(),
-                                  // Gantilah Walet() dengan objek wallet yang sesuai
-                                ),
-                              );
-                            },
-                            child: const Center(
-                              child: Text(
-                                "Top Up",
-                              ),
-                            ),
-                          ),
+                        MenuItemBTT(
+                          text: 'Transfer',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Transfer()),
+                            );
+                          },
+                        ),
+                        MenuItemBTT(
+                          text: 'Top Up',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TopUp()),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -358,6 +318,12 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Promosi()));
+        },
+        tooltip: 'Promosi',
+        child: Image.asset('assets/images/promosi.png'),),
       bottomNavigationBar: CustomBottomNavigationBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
