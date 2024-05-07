@@ -56,7 +56,6 @@ class TransaksiProvider extends ChangeNotifier {
     if (filter == 'Semua') {
         _filteredTransaction = transactions;
     } else {
-      // Filter transactions sesuai kriteria yang dipilih
       _filteredTransaction = transactions.where((transaction) => transaction['type'] == filter).toList();
     }
     notifyListeners();

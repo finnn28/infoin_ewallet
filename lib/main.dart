@@ -73,18 +73,6 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: "Infoin_E-Wallet",
       theme: newThemeData,
-      // theme: ThemeData(
-      //   primarySwatch: Colors.yellow,
-      //   useMaterial3: false,
-      //   pageTransitionsTheme: PageTransitionsTheme(
-      //     builders: {
-      //       TargetPlatform.android: CustomPageTransitionsBuilder(
-      //         transitionDuration: const Duration(milliseconds: 300),
-      //         curves: Curves.ease,
-      //       )
-      //     },
-      //   ),
-      // ),
       debugShowCheckedModeBanner: false,
       home: const Login(),
       routes: {

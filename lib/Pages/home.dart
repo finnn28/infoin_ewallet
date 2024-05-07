@@ -22,7 +22,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   int _currentAdIndex = 0;
-  List<String> _advertisementImages = [
+  final List<String> _advertisementImages = [
     'assets/images/img_rectangle_4.png',
     'assets/images/ads2.jpeg',
     'assets/images/ads3.png',
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       setState(() {
         _currentAdIndex = (_currentAdIndex + 1) % _advertisementImages.length;
       });
@@ -78,19 +78,8 @@ class _HomeState extends State<Home> {
     var wallet = Provider.of<WalletProvider>(context);
     final saldoFormat = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return Scaffold(
-      // backgroundColor: Color.fromARGB(255, 226, 225, 225),
       body: Stack(
         children: [
-          // Positioned(
-          //     top: 0,
-          //     left: 0,
-          //     right: 0,
-          //     bottom: 450,
-          //     child: Image.asset(
-          //       'assets/images/img_rectangle_3.png',
-          //       height: 5,
-          //       fit: BoxFit.cover,
-          //     )),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -105,11 +94,11 @@ class _HomeState extends State<Home> {
                     )),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   height: 80,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(204, 250, 19, 2),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
@@ -121,7 +110,7 @@ class _HomeState extends State<Home> {
                         child: Container(
                           width: 50,
                           height: 50,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
@@ -138,12 +127,12 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            SizedBox(height: 8),
-                            Text("Saldo", style: TextStyle(color: Colors.white, fontSize: 15)),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 8),
+                            const Text("Saldo", style: TextStyle(color: Colors.white, fontSize: 15)),
+                            const SizedBox(height: 10),
                             Text(
                               '${saldoFormat.format(wallet.balance ?? 0)}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20
                               )
@@ -164,19 +153,19 @@ class _HomeState extends State<Home> {
                         MenuItemBTT(svgPath: 'assets/images/img_bx_bx_scan.svg', onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Bayar()),
+                            MaterialPageRoute(builder: (context) => const Bayar()),
                           );
                         },),
                         MenuItemBTT(svgPath: 'assets/images/img_transaction_1.svg', onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Transfer()),
+                            MaterialPageRoute(builder: (context) => const Transfer()),
                           );
                         },),
                         MenuItemBTT(svgPath: 'assets/images/img_mdi_wallet_plus_outline.svg', onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => TopUp()),
+                            MaterialPageRoute(builder: (context) => const TopUp()),
                           );
                         },),
                       ],
@@ -188,7 +177,7 @@ class _HomeState extends State<Home> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Bayar()),
+                              MaterialPageRoute(builder: (context) => const Bayar()),
                             );
                           },
                         ),
@@ -197,7 +186,7 @@ class _HomeState extends State<Home> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Transfer()),
+                              MaterialPageRoute(builder: (context) => const Transfer()),
                             );
                           },
                         ),
@@ -206,14 +195,14 @@ class _HomeState extends State<Home> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => TopUp()),
+                              MaterialPageRoute(builder: (context) => const TopUp()),
                             );
                           },
                         ),
                       ],
                     ),
                     const SizedBox(height: 55),
-                    Row(
+                    const Row(
                       children: [
                         CustomMenuItem(
                           routeName: '/pulsa',
@@ -254,34 +243,34 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 25),
                     Row(
                       children: [
-                        CustomMenuItem(
+                        const CustomMenuItem(
                           routeName: '/asuransi',
                           imagePath: 'assets/images/img_umbrella_1.svg',
                           text: 'Asuransi',
                           isSvg: true,
                         ),
-                        Spacer(),
-                        CustomMenuItem(
+                        const Spacer(),
+                        const CustomMenuItem(
                           routeName: '/investasi',
                           imagePath: 'assets/images/img_shield_variant.svg',
                           text: 'Investasi',
                           isSvg: true,
                         ),
-                        Spacer(),
-                        CustomMenuItem(
+                        const Spacer(),
+                        const CustomMenuItem(
                           routeName: '/bpjs',
                           imagePath: 'assets/images/img_healthy_living_1.svg',
                           text: 'BPJS',
                           isSvg: true,
                         ),
-                        Spacer(),
-                        CustomMenuItem(
+                        const Spacer(),
+                        const CustomMenuItem(
                           routeName: '/payment',
                           imagePath: 'assets/images/img_dashboard_2.svg',
                           text: 'Lainnya',
                           isSvg: true,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           children: [
                             GestureDetector(
@@ -296,10 +285,10 @@ class _HomeState extends State<Home> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
                     Positioned(
@@ -320,7 +309,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Promosi()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const Promosi()));
         },
         tooltip: 'Promosi',
         child: Image.asset('assets/images/promosi.png'),),

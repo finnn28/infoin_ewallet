@@ -75,7 +75,6 @@ class _ProfileState extends State<Profile> {
             leading: Icon(Icons.account_circle_outlined),
             title: Text('My Info'),
             onTap: () {
-              // Tambahkan logika untuk navigasi ke halaman informasi saya
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MyInfo()),
@@ -86,7 +85,6 @@ class _ProfileState extends State<Profile> {
             leading: Icon(Icons.settings_outlined),
             title: Text('Setting'),
             onTap: () {
-              // Tambahkan logika untuk navigasi ke halaman pengaturan
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Setting()),
@@ -97,7 +95,6 @@ class _ProfileState extends State<Profile> {
             leading: Icon(Icons.help_outline),
             title: Text('Help'),
             onTap: () {
-              // Tambahkan logika untuk navigasi ke halaman bantuan
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Help()),

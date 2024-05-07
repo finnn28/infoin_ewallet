@@ -8,7 +8,7 @@ class Pulsa extends StatefulWidget {
 }
 
 class _PulsaState extends State<Pulsa> {
-  String _selectedNominal = '5.000'; // Default selected nominal
+  String _selectedNominal = '5.000';
 
   final List<String> _nominals = [
     '5.000',
@@ -90,7 +90,6 @@ class _PulsaState extends State<Pulsa> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Tambahkan logika untuk mengirim data ke backend atau melakukan pembelian pulsa
                 String phoneNumber = _phoneNumberController.text;
                 String selectedNominal = _selectedNominal;
                 print('Nomor HP: $phoneNumber, Nominal Pulsa: $selectedNominal');

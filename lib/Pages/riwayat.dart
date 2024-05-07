@@ -48,7 +48,6 @@ class _RiwayatState extends State<Riwayat> {
           IconButton(
             icon: Icon(Icons.filter_list),
             onPressed: () {
-              // Show filter options
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -61,7 +60,7 @@ class _RiwayatState extends State<Riwayat> {
                           title: Text(option),
                           onTap: () {
                             transaksi.filterTransactions(option);
-                            Navigator.pop(context); // Close the dialog
+                            Navigator.pop(context);
                           },
                         );
                       }).toList(),

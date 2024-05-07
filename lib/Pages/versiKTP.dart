@@ -19,8 +19,6 @@ class VersiKTP extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            // Tambahkan elemen-elemen UI untuk versi KTP di sini
-            // Misalnya, gambar KTP, teks, tombol untuk memulai pemindaian, dll.
           ],
         ),
       ),

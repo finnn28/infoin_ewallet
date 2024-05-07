@@ -36,7 +36,6 @@ class _SettingState extends State<Setting> {
             TextButton(
               child: Text('Yes'),
               onPressed: () {
-                // Navigasi ke halaman login
                 Navigator.of(context).pushReplacementNamed('/login');
               },
             ),
@@ -73,7 +72,6 @@ class _SettingState extends State<Setting> {
               leading: Icon(Icons.lock),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                // Navigasi ke halaman untuk mengganti PIN
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePin()));
               },
             ),
@@ -96,7 +94,6 @@ class _SettingState extends State<Setting> {
               leading: Icon(Icons.vpn_key),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                // Navigasi ke halaman untuk mengganti password
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
               },
             ),

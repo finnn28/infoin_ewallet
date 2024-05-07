@@ -77,7 +77,6 @@ class _ChangePinState extends State<ChangePin> {
               onPressed: () {
                 if (currentPin == pinFromProvider.pin.toString()) {
                   if (newPin == confirmPin) {
-                    // Lakukan perubahan PIN
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {

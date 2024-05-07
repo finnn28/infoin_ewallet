@@ -5,7 +5,7 @@ import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:infoin_ewallet/Widget/customButton.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart'; // Import untuk NumberFormat
+import 'package:intl/intl.dart';
 
 class Transfer extends StatefulWidget {
 
@@ -25,7 +25,7 @@ class _TransferState extends State<Transfer> {
   String? _namaPenerima;
   TextEditingController _nominalController = TextEditingController();
   TextEditingController _nomorHPController = TextEditingController();
-  bool _isNomorHPValid = false; // Menyimpan status validasi nomor HP
+  bool _isNomorHPValid = false;
 
   void _cariPenerima() {
     String nomorHP = _nomorHPController.text;
@@ -35,7 +35,7 @@ class _TransferState extends State<Transfer> {
     );
     setState(() {
       _namaPenerima = penerima['nama'] ?? '';
-      _isNomorHPValid = _namaPenerima != null && _namaPenerima!.isNotEmpty; // Mengupdate status validasi nomor HP
+      _isNomorHPValid = _namaPenerima != null && _namaPenerima!.isNotEmpty;
     });
   }
 
@@ -145,7 +145,7 @@ class _TransferState extends State<Transfer> {
                 labelText: 'Rp. 0',
                 border: OutlineInputBorder(),
               ),
-              enabled: _isNomorHPValid, // Menonaktifkan jika nomor HP tidak valid
+              enabled: _isNomorHPValid,
             ),
             Text(
               'Saldo : ${saldoFormat.format(wallet.balance ?? 0)}',

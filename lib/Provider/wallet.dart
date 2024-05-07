@@ -8,7 +8,7 @@ class WalletProvider extends ChangeNotifier {
   bool decreaseBalance(double amount) {
     if (balance != null && _balance >= amount) {
       _balance -= amount;
-      notifyListeners(); // Memberitahu listeners bahwa ada perubahan
+      notifyListeners();
       return true;
     }
     return false;
@@ -17,7 +17,7 @@ class WalletProvider extends ChangeNotifier {
   bool increaseBalance(double amount) {
   if (amount > 0) {
     _balance += amount;
-    notifyListeners(); // Memberitahu listeners bahwa ada perubahan
+    notifyListeners();
     return true;
   }
   return false;

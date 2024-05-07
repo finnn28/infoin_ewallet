@@ -42,22 +42,18 @@ class _TopUpState extends State<TopUp> {
     bool success = false;
     switch (_selectedPaymentMethod) {
       case PaymentMethod.bankTransfer:
-        // Logika untuk top up melalui transfer bank
         receiverName = _selectedBank.toString().split('.').last;
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.creditCard:
-        // Logika untuk top up melalui kartu kredit
         receiverName = 'Kartu Kredit';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.alfamart:
-        // Logika untuk top up melalui Alfamart
         receiverName = 'Alfamart';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.indomaret:
-        // Logika untuk top up melalui Indomaret
         receiverName = 'Indomaret';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;

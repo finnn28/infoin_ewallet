@@ -11,7 +11,7 @@ class CustomMenuItem extends StatelessWidget {
     required this.routeName,
     required this.imagePath,
     required this.text,
-    this.isSvg = false, // default value is false for PNG
+    this.isSvg = false,
   });
 
   @override

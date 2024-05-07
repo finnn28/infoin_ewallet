@@ -16,36 +16,28 @@ class _PromosiState extends State<Promosi> {
       ),
       body: ListView(
         children: [
-          // Promo pembelian pulsa
           PromoCard(
             title: "Promo Pembelian Pulsa",
             description: "Dapatkan diskon hingga 10% untuk pembelian pulsa!",
             onPressed: () {
-              // Implementasi aksi ketika promo pembelian pulsa ditekan
             },
           ),
-          // Promo pembelian game
           PromoCard(
             title: "Promo Pembelian Game",
             description: "Beli game favoritmu dengan harga spesial!",
             onPressed: () {
-              // Implementasi aksi ketika promo pembelian game ditekan
             },
           ),
-          // Promo pembayaran listrik
           PromoCard(
             title: "Promo Pembayaran Listrik",
             description: "Bayar tagihan listrikmu dan dapatkan cashback 5%!",
             onPressed: () {
-              // Implementasi aksi ketika promo pembayaran listrik ditekan
             },
           ),
-          // Promo pembelian investasi di aplikasi e-wallet
           PromoCard(
             title: "Promo Pembelian Investasi",
             description: "Mulai investasi di e-wallet dan dapatkan bonus investasi!",
             onPressed: () {
-              // Implementasi aksi ketika promo pembelian investasi ditekan
             },
           ),
         ],
