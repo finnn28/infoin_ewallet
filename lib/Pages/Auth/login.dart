@@ -46,11 +46,17 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
-              },
-              child: const Text('Login'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
+                  },
+                  child: const Text('Login'),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextButton(

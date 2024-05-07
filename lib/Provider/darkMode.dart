@@ -11,7 +11,7 @@ class DarkMode extends ChangeNotifier {
   }
 
   var light = ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       primarySwatch: Colors.yellow,
       useMaterial3: false);
 

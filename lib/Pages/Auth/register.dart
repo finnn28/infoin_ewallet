@@ -40,14 +40,31 @@ class Register extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Login()),
-                );
-              },
-              child: const Text('Register'),
+            Padding(
+              padding: const  EdgeInsets.symmetric(horizontal: 40),
+              child: TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Retype Password',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                  },
+                  child: const Text('Register'),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextButton(
