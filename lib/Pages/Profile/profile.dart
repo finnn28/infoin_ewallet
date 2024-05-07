@@ -42,14 +42,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     var userProfile = Provider.of<UserProfile>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Container(),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SizedBox(height: 100),
           CircleAvatar(
             radius: 50,
             backgroundImage: AssetImage('assets/images/img_ellipse_17.png'),

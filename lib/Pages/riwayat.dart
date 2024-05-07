@@ -40,7 +40,6 @@ class _RiwayatState extends State<Riwayat> {
     var transaksi = Provider.of<TransaksiProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         title: Text('Riwayat'),
         centerTitle: true,
@@ -83,7 +82,6 @@ class _RiwayatState extends State<Riwayat> {
           return Container(
             margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(

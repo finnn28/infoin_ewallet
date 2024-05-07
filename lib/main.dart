@@ -12,6 +12,7 @@ import 'package:infoin_ewallet/Pages/home.dart';
 import 'package:infoin_ewallet/Pages/pesan.dart';
 import 'package:infoin_ewallet/Pages/Profile/profile.dart';
 import 'package:infoin_ewallet/Pages/riwayat.dart';
+import 'package:infoin_ewallet/Provider/darkMode.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
@@ -23,6 +24,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => UserProfile()),
       ChangeNotifierProvider(create: (_) => WalletProvider()),
       ChangeNotifierProvider(create: (_) => TransaksiProvider()),
+      ChangeNotifierProvider(create: (_) => DarkMode()),
     ],
     child: const MainApp(),
   ));
@@ -57,20 +59,32 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tema = Provider.of<DarkMode>(context);
+    final customPageTransitionsBuilder = CustomPageTransitionsBuilder(
+      transitionDuration: const Duration(milliseconds: 300),
+      curves: Curves.ease,
+    );
+    final pageTransitionsTheme = PageTransitionsTheme(builders: {
+      TargetPlatform.android: customPageTransitionsBuilder,
+    });
+
+    final newThemeData = tema.enableDarkMode ? tema.dark.copyWith(pageTransitionsTheme: pageTransitionsTheme)
+                                              : tema.light.copyWith(pageTransitionsTheme: pageTransitionsTheme);
     return MaterialApp(
       title: "Infoin_E-Wallet",
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        useMaterial3: false,
-        pageTransitionsTheme: PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: CustomPageTransitionsBuilder(
-              transitionDuration: const Duration(milliseconds: 300),
-              curves: Curves.ease,
-            )
-          },
-        ),
-      ),
+      theme: newThemeData,
+      // theme: ThemeData(
+      //   primarySwatch: Colors.yellow,
+      //   useMaterial3: false,
+      //   pageTransitionsTheme: PageTransitionsTheme(
+      //     builders: {
+      //       TargetPlatform.android: CustomPageTransitionsBuilder(
+      //         transitionDuration: const Duration(milliseconds: 300),
+      //         curves: Curves.ease,
+      //       )
+      //     },
+      //   ),
+      // ),
       debugShowCheckedModeBanner: false,
       home: const Login(),
       routes: {

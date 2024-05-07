@@ -67,7 +67,6 @@ class _PesanState extends State<Pesan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         title: Text('Pesan'),
         centerTitle: true,
@@ -79,7 +78,6 @@ class _PesanState extends State<Pesan> {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 1, vertical: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(

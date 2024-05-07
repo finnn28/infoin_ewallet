@@ -30,9 +30,6 @@ class _PinDialogState extends State<PinDialog> {
         keyboardType: TextInputType.number,
         maxLength: 6,
         obscureText: true,
-        decoration: InputDecoration(
-          hintText: '123456',
-        ),
       ),
       actions: [
         TextButton(

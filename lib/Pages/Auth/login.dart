@@ -48,7 +48,6 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add login functionality here
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
               },
               child: const Text('Login'),
@@ -56,7 +55,6 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 10),
             TextButton(
               onPressed: () {
-                // Navigate to Register screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const  Register()),

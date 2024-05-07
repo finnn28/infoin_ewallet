@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Pages/Profile/changePassword.dart';
+import 'package:infoin_ewallet/Pages/Profile/changePin.dart';
+import 'package:infoin_ewallet/Provider/darkMode.dart';
+import 'package:provider/provider.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
@@ -44,6 +48,7 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) {
+    var Tema = Provider.of<DarkMode>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Setting'),
@@ -53,7 +58,6 @@ class _SettingState extends State<Setting> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -70,13 +74,13 @@ class _SettingState extends State<Setting> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 // Navigasi ke halaman untuk mengganti PIN
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePin()));
               },
             ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -93,13 +97,35 @@ class _SettingState extends State<Setting> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 // Navigasi ke halaman untuk mengganti password
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
               },
             ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 1,
+                  offset: Offset(0, 5),
+                )
+              ]
+            ),
+            child: SwitchListTile(
+              title: Text('Dark Mode'),
+              value: Tema.enableDarkMode,
+              secondary: Icon(Icons.nightlight_round),
+              onChanged: (value) {
+                Tema.ganti = value;
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/pin.dart';
+import 'package:infoin_ewallet/Pages/transaksiSukses.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:infoin_ewallet/Widget/customButton.dart';
@@ -19,7 +20,6 @@ class _TransferState extends State<Transfer> {
     {'nama': 'Agus', 'nomorHP': '0812345678'},
     {'nama': 'Rizki', 'nomorHP': '0812345679'},
     {'nama': 'Farhan', 'nomorHP': '0812345680'},
-    // Tambahkan penerima transfer lainnya sesuai kebutuhan
   ];
 
   String? _namaPenerima;
@@ -49,7 +49,7 @@ class _TransferState extends State<Transfer> {
       builder: (BuildContext context) {
         return PinDialog(
           onPinEntered: () {
-            // Memanggil fungsi transfer setelah PIN dimasukkan
+              Navigator.of(context).pop();
             _prosesTransfer();
           },
         );
@@ -59,14 +59,7 @@ class _TransferState extends State<Transfer> {
   
   void _prosesTransfer() {
     double nominal = double.tryParse(_nominalController.text) ?? 0.0;
-    Map<String, dynamic> newTransaction = {
-      'name': _namaPenerima!,
-      'type': 'Pengeluaran',
-      'category': 'Transfer',
-      'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
-      'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
-      'avatar': 'assets/images/img_ellipse_17.png'
-    };
+    
       if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
@@ -77,7 +70,25 @@ class _TransferState extends State<Transfer> {
       bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
 
       if (success) {
+        Map<String, dynamic> newTransaction = {
+          'name': _namaPenerima!,
+          'type': 'Pengeluaran',
+          'category': 'Transfer',
+          'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
+          'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
+          'avatar': 'assets/images/img_ellipse_17.png'
+        };
         Provider.of<TransaksiProvider>(context, listen: false).addTransaction(newTransaction);
+        try {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TransactionSuccessPage(transactionData: newTransaction),
+            ),
+          );
+        } catch (e) {
+          print('Error navigating to TransactionSuccessPage: $e');
+        }
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Transfer berhasil')),
         );
@@ -87,13 +98,10 @@ class _TransferState extends State<Transfer> {
         );
       }
   }
-    
-
 
   @override
   Widget build(BuildContext context) {
     var wallet = Provider.of<WalletProvider>(context);
-    // Membuat format untuk saldo
     final saldoFormat = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return Scaffold(
       appBar: AppBar(

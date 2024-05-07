@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infoin_ewallet/Pages/Auth/login.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});
@@ -6,9 +7,6 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,9 +42,22 @@ class Register extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add registration functionality here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login()),
+                );
               },
               child: const Text('Register'),
+            ),
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const  Login()),
+                );
+              },
+              child: const  Text('I already have an account'),
             ),
           ],
         ),

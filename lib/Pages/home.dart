@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/bayar.dart';
-import 'package:infoin_ewallet/Pages/promosi.dart';
+import 'package:infoin_ewallet/Pages/promo.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:infoin_ewallet/Pages/topup.dart';
 import 'package:infoin_ewallet/Provider/userProfile.dart';
@@ -78,19 +78,19 @@ class _HomeState extends State<Home> {
     var wallet = Provider.of<WalletProvider>(context);
     final saldoFormat = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 226, 225, 225),
+      // backgroundColor: Color.fromARGB(255, 226, 225, 225),
       body: Stack(
         children: [
-          Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 450,
-              child: Image.asset(
-                'assets/images/img_rectangle_3.png',
-                height: 5,
-                fit: BoxFit.cover,
-              )),
+          // Positioned(
+          //     top: 0,
+          //     left: 0,
+          //     right: 0,
+          //     bottom: 450,
+          //     child: Image.asset(
+          //       'assets/images/img_rectangle_3.png',
+          //       height: 5,
+          //       fit: BoxFit.cover,
+          //     )),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
                   width: double.infinity,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 216, 23, 10),
+                    color: Color.fromARGB(204, 250, 19, 2),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   child: Row(
